@@ -1,0 +1,58 @@
+---
+name: Terraform
+
+on:
+  pull_request:
+    paths:
+      - "**.tf"
+  pull_request_target:
+    paths:
+      - "**.tf"
+
+jobs:
+  terraform:
+    name: Terraform
+
+    # If the PR is coming from a fork (pull_request_target), ensure it's opened by "dependabot[bot]".
+    # Otherwise, clone it normally.
+    if: |
+      (github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]') ||
+      (github.event_name != 'pull_request_target' && github.actor != 'dependabot[bot]')
+    runs-on: ubuntu-22.04
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Checkout
+        if: ${{ github.event_name != 'pull_request_target' }}
+        uses: actions/checkout@v3.5.3
+
+      - name: Checkout
+        if: ${{ github.event_name == 'pull_request_target' }}
+        uses: actions/checkout@v3.5.3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Get Terraform version
+        id: terraform_version
+        uses: juliangruber/read-file-action@v1.1.6
+        with:
+          path: ./.terraform-version
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2.0.3
+        with:
+          terraform_version: ${{ steps.terraform_version.outputs.content }}
+
+      - name: Terraform Format
+        id: fmt
+        run: terraform fmt -recursive -check
+
+      - name: Terraform Init
+        id: init
+        run: terraform init -upgrade
+
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color

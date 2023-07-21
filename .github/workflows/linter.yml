@@ -1,0 +1,41 @@
+---
+name: Lint Code Base
+
+on:
+  pull_request:
+  pull_request_target:
+  merge_group:
+
+jobs:
+  lint:
+    name: Lint Code Base
+
+    # If the PR is coming from a fork (pull_request_target), ensure it's opened by "dependabot[bot]".
+    # Otherwise, clone it normally.
+    if: |
+        (github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]') ||
+        (github.event_name != 'pull_request_target' && github.actor != 'dependabot[bot]')
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout
+        if: ${{ github.event_name != 'pull_request_target' }}
+        uses: actions/checkout@v3.5.3
+        with:
+          fetch-depth: 0
+
+      - name: Checkout
+        if: ${{ github.event_name == 'pull_request_target' }}
+        uses: actions/checkout@v3.5.3
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Lint Code Base
+        uses: super-linter/super-linter@v5.1.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BRANCH: main
+          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_TERRAFORM_TERRASCAN: false
+          ERROR_ON_MISSING_EXEC_BIT: true

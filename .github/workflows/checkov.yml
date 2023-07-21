@@ -1,0 +1,25 @@
+---
+name: Checkov
+
+on:
+  pull_request:
+    paths:
+      - "**.tf"
+
+jobs:
+  checkov:
+    name: Checkov
+
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.5.3
+        with:
+          fetch-depth: 0
+
+      - name: Run Checkov
+        uses: bridgecrewio/checkov-action@v12.2431.0
+        with:
+          config_file: terraform/checkov-config.yml
+          output_format: github_failed_only
