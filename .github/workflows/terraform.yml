@@ -65,7 +65,7 @@ jobs:
           script: |
             const output = `#### Terraform Format and Style \`${{ steps.fmt.outcome }}\`
             #### Terraform Initialization \`${{ steps.init.outcome }}\`
-            #### Terraform Validation ${{ steps.validate.outputs.stdout }}
+            #### Terraform Validation ${{ steps.validate.outputs.stdout }}`;
 
             github.rest.issues.createComment({
               issue_number: context.issue.number,
