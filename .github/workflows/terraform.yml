@@ -67,11 +67,6 @@ jobs:
             #### Terraform Initialization \`${{ steps.init.outcome }}\`
             #### Terraform Validation ${{ steps.validate.outputs.stdout }}
 
-            <details><summary>Show Plan</summary>
-
-            \`\`\`${plan}\`\`\`
-            </details>`;
-
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
