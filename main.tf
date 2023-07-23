@@ -82,7 +82,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "this" {
 }
 
 resource "aws_kms_key" "this" {
-  description         = "KMS key for S3"
+  description         = "KMS key for ${aws_s3_bucket.this.bucket}"
   enable_key_rotation = var.aws_kms_key_enable_key_rotation
   multi_region        = var.aws_kms_key_multi_region
 
