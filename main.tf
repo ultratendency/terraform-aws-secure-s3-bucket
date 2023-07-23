@@ -10,7 +10,7 @@ resource "aws_s3_bucket_policy" "this" {
 
   policy = jsonencode({
     Version = "2012-10-17"
-    Id      = "this"
+    Id      = "${aws_s3_bucket.this.bucket}-https-only-policy"
     Statement = [
       {
         Sid       = "HTTPSOnly"
