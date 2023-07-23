@@ -85,24 +85,6 @@ resource "aws_kms_key" "this" {
   description         = "KMS key for ${aws_s3_bucket.this.bucket}"
   enable_key_rotation = var.aws_kms_key_enable_key_rotation
   multi_region        = var.aws_kms_key_multi_region
-
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Id      = aws_s3_bucket.this.bucket
-    Statement = [
-      {
-        Sid    = "Enable IAM User Permissions"
-        Effect = "Allow"
-        Principal = {
-          AWS = [
-            "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root",
-          ]
-        }
-        Action   = "kms:*"
-        Resource = "*"
-      },
-    ]
-  })
 }
 
 resource "aws_kms_alias" "this" {
