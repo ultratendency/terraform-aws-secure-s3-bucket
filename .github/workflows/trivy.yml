@@ -28,3 +28,4 @@ jobs:
           format: 'table'
           exit-code: '1'
           hide-progress: false
+          skip-dirs: 'examples'

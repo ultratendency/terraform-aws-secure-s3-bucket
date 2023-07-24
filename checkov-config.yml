@@ -6,3 +6,5 @@ skip-check:
   - CKV_AWS_18
   - CKV_AWS_144
   - CKV2_AWS_62
+  # As we're using the Terraform Registry
+  - CKV_TF_1

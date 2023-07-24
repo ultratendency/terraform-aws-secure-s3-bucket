@@ -1,23 +1,7 @@
-# AWS Secure S3 Terraform module
-
-Terraform module which creates a S3 bucket on AWS with secure defaults.
-
-## Usage
-
-The simplest usage of this module is shown below. It only requires to pass in the `bucket_name`.
-
-```hcl
-module "terraform_state_s3_bucket" {
-  source  = "ultratendency/secure-s3-bucket/aws"
-  version = "1.0.0"
-
-  bucket_name = "secure-bucket"
+provider "aws" {
+  region = "eu-central-1"
 }
-```
 
-A complete example looks like the following, where all inputs are configured.
-
-```hcl
 module "terraform_state_s3_bucket" {
   source  = "ultratendency/secure-s3-bucket/aws"
   version = "1.0.0"
@@ -39,4 +23,3 @@ module "terraform_state_s3_bucket" {
   aws_s3_bucket_public_access_block_ignore_public_acls      = false
   aws_s3_bucket_public_access_block_restrict_public_buckets = false
 }
-```
