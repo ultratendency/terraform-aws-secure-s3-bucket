@@ -9,7 +9,7 @@ The simplest usage of this module is shown below. It only requires to pass in th
 ```hcl
 module "terraform_state_s3_bucket" {
   source  = "ultratendency/secure-s3-bucket/aws"
-  version = "1.0.0"
+  version = "1.0.1"
 
   bucket_name = "secure-bucket"
 }
@@ -20,7 +20,7 @@ A complete example looks like the following, where all inputs are configured.
 ```hcl
 module "terraform_state_s3_bucket" {
   source  = "ultratendency/secure-s3-bucket/aws"
-  version = "1.0.0"
+  version = "1.0.1"
 
   bucket_name = "secure-bucket"
 
