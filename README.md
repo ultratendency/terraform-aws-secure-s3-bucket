@@ -1,5 +1,7 @@
 # AWS Secure S3 Terraform module
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ultratendency_terraform-aws-secure-s3-bucket&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ultratendency_terraform-aws-secure-s3-bucket)
+
 Terraform module which creates a S3 bucket on AWS with secure defaults.
 
 ## Usage
