@@ -20,13 +20,13 @@ jobs:
     steps:
       - name: Checkout
         if: ${{ github.event_name != 'pull_request_target' }}
-        uses: actions/checkout@v3.5.3
+        uses: actions/checkout@v3.6.0
         with:
           fetch-depth: 0
 
       - name: Checkout
         if: ${{ github.event_name == 'pull_request_target' }}
-        uses: actions/checkout@v3.5.3
+        uses: actions/checkout@v3.6.0
         with:
           fetch-depth: 0
           ref: ${{ github.event.pull_request.head.sha }}
