@@ -5,6 +5,7 @@ on:
   pull_request:
     paths:
       - "**.tf"
+      - ".terraform-version"
   pull_request_target:
     paths:
       - "**.tf"
