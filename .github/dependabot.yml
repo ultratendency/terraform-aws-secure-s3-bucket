@@ -3,7 +3,8 @@ version: 2
 updates:
   - package-ecosystem: "terraform"
     directory: "/"
-    commit-message: "chore"
+    commit-message:
+      prefix: "chore"
     schedule:
       interval: "daily"
       time: "07:00"
@@ -11,7 +12,8 @@ updates:
 
   - package-ecosystem: "github-actions"
     directory: "/"
-    commit-message: "chore"
+    commit-message:
+      prefix: "chore"
     schedule:
       interval: "daily"
       time: "07:00"
@@ -19,7 +21,8 @@ updates:
 
   - package-ecosystem: "pip"
     directory: "/"
-    commit-message: "chore"
+    commit-message:
+      prefix: "chore"
     schedule:
       interval: "daily"
       time: "07:00"

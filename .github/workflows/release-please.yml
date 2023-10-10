@@ -19,4 +19,4 @@ jobs:
     steps:
       - uses: google-github-actions/release-please-action@v3.7.12
         with:
-          release-type: simple
+          release-type: terraform-module
