@@ -23,5 +23,5 @@ max_line_length = off
 max_line_length = off
 trim_trailing_whitespace = false
 
-[*.yml]
+[{*.yml,*.json}]
 max_line_length = off
