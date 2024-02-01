@@ -38,5 +38,4 @@ jobs:
           DEFAULT_BRANCH: main
           VALIDATE_ALL_CODEBASE: false
           VALIDATE_TERRAFORM_TERRASCAN: false
-          ERROR_ON_MISSING_EXEC_BIT: true
           VALIDATE_CHECKOV: false
