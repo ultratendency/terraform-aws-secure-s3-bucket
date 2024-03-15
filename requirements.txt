@@ -1,2 +1,2 @@
-checkov==3.2.37
+checkov==3.2.38
 pip==24.0
