@@ -14,12 +14,12 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.1.4
+        uses: actions/checkout@v4.1.5
         with:
           fetch-depth: 0
 
       - name: Run Checkov
-        uses: bridgecrewio/checkov-action@v12.2731.0
+        uses: bridgecrewio/checkov-action@v12.2734.0
         with:
           config_file: checkov-config.yml
           output_format: github_failed_only
