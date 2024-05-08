@@ -42,7 +42,7 @@ jobs:
           path: ./.terraform-version
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3.1.0
+        uses: hashicorp/setup-terraform@v3.1.1
         with:
           terraform_version: ${{ steps.terraform_version.outputs.content }}
 
