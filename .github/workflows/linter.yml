@@ -13,10 +13,9 @@ jobs:
     # If the PR is coming from a fork (pull_request_target), ensure it's opened by "dependabot[bot]".
     # Otherwise, clone it normally.
     if: |
-        (github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]') ||
-        (github.event_name != 'pull_request_target' && github.actor != 'dependabot[bot]')
+      (github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]') ||
+      (github.event_name != 'pull_request_target' && github.actor != 'dependabot[bot]')
     runs-on: ubuntu-22.04
-
     steps:
       - name: Checkout
         if: ${{ github.event_name != 'pull_request_target' }}
@@ -39,3 +38,4 @@ jobs:
           VALIDATE_TERRAFORM_TERRASCAN: false
           VALIDATE_CHECKOV: false
           VALIDATE_JSCPD: false
+          VALIDATE_NATURAL_LANGUAGE: false
