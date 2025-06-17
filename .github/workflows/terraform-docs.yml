@@ -1,0 +1,50 @@
+---
+name: Generate Terraform docs
+
+on:
+  pull_request:
+    paths:
+      - "**.tf"
+      - ".terraform-docs.yml"
+      - ".terraform-version"
+    types:
+      - opened
+      - synchronize
+      - reopened
+  pull_request_target:
+    paths:
+      - "**.tf"
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  docs:
+    name: Generate Terraform docs
+
+    # If the PR is coming from a fork (pull_request_target), ensure it's opened by "dependabot[bot]".
+    # Otherwise, clone it normally.
+    if: |
+      (github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]') ||
+      (github.event_name != 'pull_request_target' && github.actor != 'dependabot[bot]')
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        if: ${{ github.event_name != 'pull_request_target' }}
+        uses: actions/checkout@v4.2.2
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Checkout
+        if: ${{ github.event_name == 'pull_request_target' }}
+        uses: actions/checkout@v4.2.2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Render terraform docs inside the README.md and push changes back to PR branch
+        uses: terraform-docs/gh-actions@v1.4.1
+        with:
+          working-dir: .
+          config-file: .terraform-docs.yml
+          git-push: "true"
