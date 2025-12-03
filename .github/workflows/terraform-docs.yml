@@ -32,13 +32,13 @@ jobs:
     steps:
       - name: Checkout
         if: ${{ github.event_name != 'pull_request_target' }}
-        uses: actions/checkout@v6.0.0
+        uses: actions/checkout@v6.0.1
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Checkout
         if: ${{ github.event_name == 'pull_request_target' }}
-        uses: actions/checkout@v6.0.0
+        uses: actions/checkout@v6.0.1
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
