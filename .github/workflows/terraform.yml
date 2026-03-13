@@ -37,7 +37,7 @@ jobs:
 
       - name: Get Terraform version
         id: terraform_version
-        uses: juliangruber/read-file-action@v1.1.7
+        uses: juliangruber/read-file-action@v1.1.8
         with:
           path: ./.terraform-version
 
